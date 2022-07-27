@@ -15,11 +15,24 @@
 
 FROM python:3.10.5
 
-WORKDIR /app
+RUN pip install --upgrade pip
 
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN adduser -D myuser
+USER myuser
+WORKDIR /home/myuser
 
-COPY . .
+COPY --chown=myuser:myuser requirements.txt requirements.txt
+RUN pip install --user -r requirements.txt
+RUN pip install python-dotenv
+ENV PATH="/home/user/.local/bin:${PATH}"
+
+COPY --chown=myuser:myuser . .
+
+#WORKDIR /app
+#
+#COPY requirements.txt .
+#RUN pip install -r requirements.txt
+#
+#COPY . .
 
 CMD ["python3", "app.py"]
