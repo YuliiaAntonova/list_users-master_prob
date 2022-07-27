@@ -11,6 +11,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True)
@@ -28,8 +29,10 @@ class User(db.Model):
             'email': self.email
         }
 
-
+Migrate(app, db)
 db.create_all()
+
+
 
 
 @app.route('/')
