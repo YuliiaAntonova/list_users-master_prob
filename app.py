@@ -107,5 +107,5 @@ if __name__ == '__main__':
     # if len(sys.argv) <= 1:
     #     print('Pass the number of users you want to create as an argument.')
     #     sys.exit(1)
-    create_fake_users(1)
+    create_fake_users(10)
     app.run()
