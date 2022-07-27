@@ -8,10 +8,11 @@ from flask_sqlalchemy import SQLAlchemy
 from faker import Faker
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://cnitzxubyjqkir:2f0fbf9fd751619721b37a7675bb5499d4dff71c41530ae20e565c63f9fc9e0f@ec2-54-75-184-144.eu-west-1.compute.amazonaws.com:5432/dcmbsntuh551up'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = ' postgres://vjacqsulwyjtvg:40fad33d088e3b71a6a5cba956873dd99a70b7a76b21804d14da841374e9f038@ec2-54-161-255-125.compute-1.amazonaws.com:5432/dfd255n1asumia'
+app.config['SECRET_KEY'] = 'dev'
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
