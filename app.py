@@ -10,7 +10,7 @@ from faker import Faker
 app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://bftaxkagwrowin:2fc167f35eda57bdf73a61900b38c6c080c91cd182cbbed483f99594d66d170d@ec2-50-19-255-190.compute-1.amazonaws.com:5432/d8j0nrs53u87s8'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://bftaxkagwrowin:2fc167f35eda57bdf73a61900b38c6c080c91cd182cbbed483f99594d66d170d@ec2-50-19-255-190.compute-1.amazonaws.com:5432/d8j0nrs53u87s8'
 
 app.config['SECRET_KEY'] = 'dev'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -19,11 +19,11 @@ db = SQLAlchemy(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(30), index=True)
+    name = db.Column(db.String(), index=True)
     age = db.Column(db.Integer, index=True)
-    address = db.Column(db.String(130))
-    phone = db.Column(db.String(50))
-    email = db.Column(db.String(20))
+    address = db.Column(db.String())
+    phone = db.Column(db.String())
+    email = db.Column(db.String())
 
     def to_dict(self):
         return {
