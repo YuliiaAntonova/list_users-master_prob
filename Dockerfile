@@ -1,7 +1,7 @@
 FROM python:3
 
-ENV FLASK_APP /app
-WORKDIR $FLASK_APP
+ENV APP_HOME /app
+WORKDIR $APP_HOME
 
 COPY . /app
 
