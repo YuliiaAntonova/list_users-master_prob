@@ -44,8 +44,12 @@ def create_fake_users(n):
                     phone=faker.phone_number(),
                     email=faker.email())
         db.session.add(user)
-    db.session.commit()
+    # db.session.commit()
     print(f'Added {n} fake users to the database.')
+    if len(sys.argv) <= 1:
+        print('Pass the number of users you want to create as an argument.')
+        sys.exit(1)
+create_fake_users(int(10))
 
 
 
@@ -108,5 +112,5 @@ if __name__ == '__main__':
     # if len(sys.argv) <= 1:
     #     print('Pass the number of users you want to create as an argument.')
     #     sys.exit(1)
-    create_fake_users(10)
+
     app.run()
