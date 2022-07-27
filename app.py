@@ -1,3 +1,4 @@
+import os
 import random
 
 from flask import Flask, render_template, request
@@ -6,9 +7,9 @@ from flask_sqlalchemy import SQLAlchemy
 from faker import Faker
 
 app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://bftaxkagwrowin:2fc167f35eda57bdf73a61900b38c6c080c91cd182cbbed483f99594d66d170d@ec2-50-19-255-190.compute-1.amazonaws.com:5432/d8j0nrs53u87s8'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://bftaxkagwrowin:2fc167f35eda57bdf73a61900b38c6c080c91cd182cbbed483f99594d66d170d@ec2-50-19-255-190.compute-1.amazonaws.com:5432/d8j0nrs53u87s8'
 
 app.config['SECRET_KEY'] = 'dev'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -109,4 +110,6 @@ if __name__ == '__main__':
     #     print('Pass the number of users you want to create as an argument.')
     #     sys.exit(1)
     create_fake_users(2)
-    app.run()
+    # app.run(host='0.0.0.1', port='5000')
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=True)
