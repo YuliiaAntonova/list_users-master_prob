@@ -44,9 +44,9 @@ def create_fake_users(n):
                     phone=faker.phone_number(),
                     email=faker.email())
         db.session.add(user)
-    # db.session.commit()
+    db.session.commit()
     print(f'Added {n} fake users to the database.')
-create_fake_users(40)
+create_fake_users(int(1000))
 
 
 Migrate(app, db)
