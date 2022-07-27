@@ -12,7 +12,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = ' postgres://vjacqsulwyjtvg:40fad33d088e3b71a6a5cba956873dd99a70b7a76b21804d14da841374e9f038@ec2-54-161-255-125.compute-1.amazonaws.com:5432/dfd255n1asumia'
 app.config['SECRET_KEY'] = 'dev'
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
