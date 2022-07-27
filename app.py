@@ -18,11 +18,11 @@ db = SQLAlchemy(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(), index=True)
+    name = db.Column(db.String(30), index=True)
     age = db.Column(db.Integer, index=True)
-    address = db.Column(db.String())
-    phone = db.Column(db.String())
-    email = db.Column(db.String())
+    address = db.Column(db.String(130))
+    phone = db.Column(db.String(50))
+    email = db.Column(db.String(20))
 
     def to_dict(self):
         return {
@@ -46,7 +46,7 @@ def create_fake_users(n):
         db.session.add(user)
     db.session.commit()
     print(f'Added {n} fake users to the database.')
-create_fake_users(int(1000))
+
 
 
 Migrate(app, db)
@@ -108,5 +108,5 @@ if __name__ == '__main__':
     # if len(sys.argv) <= 1:
     #     print('Pass the number of users you want to create as an argument.')
     #     sys.exit(1)
-
+    create_fake_users(10)
     app.run()
