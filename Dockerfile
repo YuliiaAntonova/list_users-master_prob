@@ -10,9 +10,9 @@
 #
 # ENTRYPOINT ["python3"]
 # CMD ["app.py"]
-#
-#
-#
+
+
+
 FROM python:3.10.5
 
 WORKDIR /app
