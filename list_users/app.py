@@ -1,8 +1,11 @@
 import os
+import sys
+import random
 
 from flask import Flask, render_template, request
 from flask_migrate import Migrate, migrate
 from flask_sqlalchemy import SQLAlchemy
+from faker import Faker
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
@@ -29,10 +32,23 @@ class User(db.Model):
             'email': self.email
         }
 
+
+
+def create_fake_users(n):
+    """Generate fake users."""
+    faker = Faker()
+    for i in range(n):
+        user = User(name=faker.name(),
+                    age=random.randint(20, 80),
+                    address=faker.address().replace('\n', ', '),
+                    phone=faker.phone_number(),
+                    email=faker.email())
+        db.session.add(user)
+    db.session.commit()
+    print(f'Added {n} fake users to the database.')
+
 Migrate(app, db)
 db.create_all()
-
-
 
 
 @app.route('/')
@@ -87,4 +103,9 @@ def data():
 
 
 if __name__ == '__main__':
+
+    # if len(sys.argv) <= 1:
+    #     print('Pass the number of users you want to create as an argument.')
+    #     sys.exit(1)
+    create_fake_users(1000)
     app.run()
