@@ -33,7 +33,6 @@ class User(db.Model):
         }
 
 
-
 def create_fake_users(n):
     """Generate fake users."""
     faker = Faker()
@@ -46,6 +45,7 @@ def create_fake_users(n):
         db.session.add(user)
     db.session.commit()
     print(f'Added {n} fake users to the database.')
+
 
 Migrate(app, db)
 db.create_all()
@@ -103,7 +103,6 @@ def data():
 
 
 if __name__ == '__main__':
-
     # if len(sys.argv) <= 1:
     #     print('Pass the number of users you want to create as an argument.')
     #     sys.exit(1)
