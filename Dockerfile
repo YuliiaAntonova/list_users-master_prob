@@ -13,19 +13,13 @@
 #
 #
 #
-FROM python:3.10.5-alpine
+FROM python:3.10.5
 
-RUN pip install --upgrade pip
+WORKDIR /app
 
-RUN adduser -D yuliiaantonova
-USER yuliiaantonova
-WORKDIR /home/yuliiaantonova
-
-COPY --chown=yuliiaantonova:yuliiaantonova requirements.txt requirements.txt
+COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-ENV PATH="/home/myuser/.local/bin:${PATH}"
+COPY . .
 
-COPY --chown=yuliiaantonova:yuliiaantonova . .
-
-CMD ["python", "app.py", "runserver", "127.0.0.0:5000"]
+CMD ["python3", "app.py"]
