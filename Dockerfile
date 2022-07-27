@@ -1,15 +1,31 @@
-FROM python:3
+# FROM python:3
+#
+# ENV APP_HOME /app
+# WORKDIR $APP_HOME
+#
+# COPY . /app
+#
+# RUN pip install -r requirements.txt
+# RUN pip install python-dotenv
+#
+# ENTRYPOINT ["python3"]
+# CMD ["app.py"]
+#
+#
+#
+FROM python:3.10.5-alpine
 
-ENV APP_HOME /app
-WORKDIR $APP_HOME
+RUN pip install --upgrade pip
 
-COPY . /app
+RUN adduser -D yuliiaantonova
+USER yuliiaantonova
+WORKDIR /home/yuliiaantonova
 
+COPY --chown=yuliiaantonova:yuliiaantonova requirements.txt requirements.txt
 RUN pip install -r requirements.txt
-RUN pip install python-dotenv
 
-ENTRYPOINT ["python3"]
-CMD ["app.py"]
+ENV PATH="/home/myuser/.local/bin:${PATH}"
 
+COPY --chown=yuliiaantonova:yuliiaantonova . .
 
-
+CMD ["python", "app.py", "runserver", "127.0.0.0:5000"]
