@@ -1,15 +1,15 @@
-import os
 import random
 
 from flask import Flask, render_template, request
-from flask_migrate import Migrate, migrate
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from faker import Faker
 
 app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://bftaxkagwrowin:2fc167f35eda57bdf73a61900b38c6c080c91cd182cbbed483f99594d66d170d@ec2-50-19-255-190.compute-1.amazonaws.com:5432/d8j0nrs53u87s8'
+app.config[
+    'SQLALCHEMY_DATABASE_URI'] = 'postgresql://bftaxkagwrowin:2fc167f35eda57bdf73a61900b38c6c080c91cd182cbbed483f99594d66d170d@ec2-50-19-255-190.compute-1.amazonaws.com:5432/d8j0nrs53u87s8'
 
 app.config['SECRET_KEY'] = 'dev'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -48,10 +48,8 @@ def create_fake_users(n):
     print(f'Added {n} fake users to the database.')
 
 
-
 Migrate(app, db)
 db.create_all()
-
 
 
 @app.route('/')
@@ -106,7 +104,6 @@ def data():
 
 
 if __name__ == '__main__':
-
-    create_fake_users(2)   # 1.1 mm records to sqlite
+    create_fake_users(2)  # 1.1 mm records to sqlite
 
     app.run()
