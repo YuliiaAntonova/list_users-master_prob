@@ -18,6 +18,11 @@ WORKDIR /code
 
 COPY requirements.txt .
 
+ARG DEBIAN_FRONTEND=noninteractive
+ARG DEBCONF_NOWARNINGS="yes"
+
+RUN python -m pip install --upgrade pip && \
+
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN pip install python-dotenv
